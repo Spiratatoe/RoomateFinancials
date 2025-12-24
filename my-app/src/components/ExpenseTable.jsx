@@ -8,7 +8,7 @@ export function ExpenseTable({ expenses, title, filterType = 'all' }) {
   const totalAmount = filteredExpenses.reduce((sum, expense) => sum + expense.amount, 0);
 
   return (
-    <div className="bg-white rounded-lg shadow p-6">
+    <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)', padding: '1.5rem' }}>
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-lg font-semibold">{title}</h3>
         <div className="text-xl font-bold text-green-600">

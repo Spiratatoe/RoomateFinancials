@@ -38,21 +38,23 @@ export function CSVUpload({ onUpload }) {
   };
 
   return (
-    <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-500 transition-colors">
+    <div style={{ border: '2px dashed #D1D5DB', borderRadius: '0.5rem', padding: '2rem', textAlign: 'center', transition: 'border-color 0.2s' }}
+         onMouseEnter={(e) => e.currentTarget.style.borderColor = '#3B82F6'}
+         onMouseLeave={(e) => e.currentTarget.style.borderColor = '#D1D5DB'}>
       <input
         ref={fileInputRef}
         type="file"
         accept=".csv"
         onChange={handleFileChange}
-        className="hidden"
+        style={{ display: 'none' }}
         id="csv-upload"
       />
-      <label htmlFor="csv-upload" className="cursor-pointer">
-        <div className="flex flex-col items-center gap-3">
-          <Upload className="w-12 h-12 text-gray-400" />
+      <label htmlFor="csv-upload" style={{ cursor: 'pointer' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}>
+          <Upload style={{ width: '3rem', height: '3rem', color: '#9CA3AF' }} />
           <div>
-            <p className="text-blue-600 font-medium">Click to upload CSV</p>
-            <p className="text-sm text-gray-500 mt-1">
+            <p style={{ color: '#2563EB', fontWeight: '500' }}>Click to upload CSV</p>
+            <p style={{ fontSize: '0.875rem', color: '#6B7280', marginTop: '0.25rem' }}>
               Expected format: date, description, amount, category, roommate, type (personal/shared)
             </p>
           </div>

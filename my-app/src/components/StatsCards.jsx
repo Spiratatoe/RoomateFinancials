@@ -2,51 +2,51 @@ import { DollarSign, TrendingUp, Users, PiggyBank } from 'lucide-react';
 
 export function StatsCards({ totalSpending, personalSpending, sharedSpending, savings }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex items-center justify-between">
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
+      <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)', padding: '1.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
-            <p className="text-sm text-gray-600">Total Spending</p>
-            <p className="text-2xl font-bold mt-1">${totalSpending.toFixed(2)}</p>
+            <p style={{ fontSize: '0.875rem', color: '#4B5563' }}>Total Spending</p>
+            <p style={{ fontSize: '1.5rem', fontWeight: 'bold', marginTop: '0.25rem' }}>${totalSpending.toFixed(2)}</p>
           </div>
-          <div className="bg-blue-100 p-3 rounded-full">
-            <DollarSign className="w-6 h-6 text-blue-600" />
+          <div style={{ backgroundColor: '#DBEAFE', padding: '0.75rem', borderRadius: '9999px' }}>
+            <DollarSign style={{ width: '1.5rem', height: '1.5rem', color: '#2563EB' }} />
           </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex items-center justify-between">
+      <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)', padding: '1.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
-            <p className="text-sm text-gray-600">Personal Spending</p>
-            <p className="text-2xl font-bold mt-1">${personalSpending.toFixed(2)}</p>
+            <p style={{ fontSize: '0.875rem', color: '#4B5563' }}>Personal Spending</p>
+            <p style={{ fontSize: '1.5rem', fontWeight: 'bold', marginTop: '0.25rem' }}>${personalSpending.toFixed(2)}</p>
           </div>
-          <div className="bg-purple-100 p-3 rounded-full">
-            <TrendingUp className="w-6 h-6 text-purple-600" />
+          <div style={{ backgroundColor: '#F3E8FF', padding: '0.75rem', borderRadius: '9999px' }}>
+            <TrendingUp style={{ width: '1.5rem', height: '1.5rem', color: '#9333EA' }} />
           </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex items-center justify-between">
+      <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)', padding: '1.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
-            <p className="text-sm text-gray-600">Shared Expenses</p>
-            <p className="text-2xl font-bold mt-1">${sharedSpending.toFixed(2)}</p>
+            <p style={{ fontSize: '0.875rem', color: '#4B5563' }}>Shared Expenses</p>
+            <p style={{ fontSize: '1.5rem', fontWeight: 'bold', marginTop: '0.25rem' }}>${sharedSpending.toFixed(2)}</p>
           </div>
-          <div className="bg-green-100 p-3 rounded-full">
-            <Users className="w-6 h-6 text-green-600" />
+          <div style={{ backgroundColor: '#D1FAE5', padding: '0.75rem', borderRadius: '9999px' }}>
+            <Users style={{ width: '1.5rem', height: '1.5rem', color: '#059669' }} />
           </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex items-center justify-between">
+      <div style={{ backgroundColor: 'white', borderRadius: '0.5rem', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)', padding: '1.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
-            <p className="text-sm text-gray-600">Total Savings</p>
-            <p className="text-2xl font-bold mt-1">${savings.toFixed(2)}</p>
+            <p style={{ fontSize: '0.875rem', color: '#4B5563' }}>Total Savings</p>
+            <p style={{ fontSize: '1.5rem', fontWeight: 'bold', marginTop: '0.25rem' }}>${savings.toFixed(2)}</p>
           </div>
-          <div className="bg-yellow-100 p-3 rounded-full">
-            <PiggyBank className="w-6 h-6 text-yellow-600" />
+          <div style={{ backgroundColor: '#FEF3C7', padding: '0.75rem', borderRadius: '9999px' }}>
+            <PiggyBank style={{ width: '1.5rem', height: '1.5rem', color: '#D97706' }} />
           </div>
         </div>
       </div>

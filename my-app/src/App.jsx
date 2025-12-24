@@ -87,58 +87,70 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div style={{ minHeight: '100vh', backgroundColor: '#F9FAFB' }}>
       {/* Header */}
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center gap-3">
-            <Receipt className="w-8 h-8 text-blue-600" />
-            <h1 className="text-3xl font-bold text-gray-900">Roommate Finance Tracker</h1>
+      <header style={{ backgroundColor: 'white', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)' }}>
+        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '1.5rem 1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <Receipt style={{ width: '2rem', height: '2rem', color: '#2563EB' }} />
+            <h1 style={{ fontSize: '1.875rem', fontWeight: 'bold', color: '#111827' }}>Roommate Finance Tracker</h1>
           </div>
         </div>
       </header>
 
       {/* Navigation Tabs */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <nav className="flex gap-8">
+      <div style={{ backgroundColor: 'white', borderBottom: '1px solid #E5E7EB' }}>
+        <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 1rem' }}>
+          <nav style={{ display: 'flex', gap: '2rem' }}>
             <button
               onClick={() => setActiveTab('overview')}
-              className={`py-4 px-2 border-b-2 transition-colors ${
-                activeTab === 'overview'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
+              style={{
+                padding: '1rem 0.5rem',
+                borderBottom: activeTab === 'overview' ? '2px solid #2563EB' : '2px solid transparent',
+                color: activeTab === 'overview' ? '#2563EB' : '#6B7280',
+                transition: 'all 0.2s',
+                background: 'none',
+                cursor: 'pointer'
+              }}
             >
               Overview
             </button>
             <button
               onClick={() => setActiveTab('personal')}
-              className={`py-4 px-2 border-b-2 transition-colors ${
-                activeTab === 'personal'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
+              style={{
+                padding: '1rem 0.5rem',
+                borderBottom: activeTab === 'personal' ? '2px solid #2563EB' : '2px solid transparent',
+                color: activeTab === 'personal' ? '#2563EB' : '#6B7280',
+                transition: 'all 0.2s',
+                background: 'none',
+                cursor: 'pointer'
+              }}
             >
               Personal Expenses
             </button>
             <button
               onClick={() => setActiveTab('shared')}
-              className={`py-4 px-2 border-b-2 transition-colors ${
-                activeTab === 'shared'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
+              style={{
+                padding: '1rem 0.5rem',
+                borderBottom: activeTab === 'shared' ? '2px solid #2563EB' : '2px solid transparent',
+                color: activeTab === 'shared' ? '#2563EB' : '#6B7280',
+                transition: 'all 0.2s',
+                background: 'none',
+                cursor: 'pointer'
+              }}
             >
               Shared Expenses
             </button>
             <button
               onClick={() => setActiveTab('upload')}
-              className={`py-4 px-2 border-b-2 transition-colors ${
-                activeTab === 'upload'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
+              style={{
+                padding: '1rem 0.5rem',
+                borderBottom: activeTab === 'upload' ? '2px solid #2563EB' : '2px solid transparent',
+                color: activeTab === 'upload' ? '#2563EB' : '#6B7280',
+                transition: 'all 0.2s',
+                background: 'none',
+                cursor: 'pointer'
+              }}
             >
               Upload CSV
             </button>
@@ -147,7 +159,7 @@ export default function App() {
       </div>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main style={{ maxWidth: '80rem', margin: '0 auto', padding: '2rem 1rem' }}>
         {activeTab === 'overview' && (
           <>
             <StatsCards
@@ -157,12 +169,12 @@ export default function App() {
               savings={totalSavings}
             />
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
               <CategoryChart data={categoryData} />
               <SavingsChart data={mockSavingsData} />
             </div>
 
-            <div className="mb-6">
+            <div style={{ marginBottom: '1.5rem' }}>
               <RoommateBreakdown data={roommateData} />
             </div>
 
