@@ -38,8 +38,5 @@ lerna-debug.log*
 # OS files
 .DS_Store
 Thumbs.db
-PROJECT_PLAN.md
-ARCHITECTURE_BRAINSTORM.md
-STORAGE_OPTIONS.md
-CHARTING_LIBRARIES.md
-DASHBOARD_FEATURES.md
+/planning-docs
+my-app/CLAUDE.md

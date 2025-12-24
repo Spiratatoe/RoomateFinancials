@@ -1,10 +1,14 @@
 import { useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { CSVUpload } from './components/CSVUpload';
 import { CategoryChart } from './components/CategoryChart';
 import { SavingsChart } from './components/SavingsChart';
 import { ExpenseTable } from './components/ExpenseTable';
 import { RoommateBreakdown } from './components/RoommateBreakdown';
 import { StatsCards } from './components/StatsCards';
+import { LoginButton } from './components/LoginButton';
+import { LogoutButton } from './components/LogoutButton';
+import { SignupButton } from './components/SignupButton';
 import { Receipt } from 'lucide-react';
 
 // Mock initial data
@@ -31,6 +35,7 @@ const mockSavingsData = [
 ];
 
 export default function App() {
+  const { isLoading, isAuthenticated, user, error } = useAuth0();
   const [expenses, setExpenses] = useState(mockExpenses);
   const [activeTab, setActiveTab] = useState('overview');
 
@@ -86,14 +91,86 @@ export default function App() {
     return acc;
   }, []);
 
+  // Show loading state while Auth0 is initializing
+  if (isLoading) {
+    return (
+      <div className="page-container">
+        <header className="header">
+          <div className="header-wrapper">
+            <div className="header-content">
+              <Receipt style={{ width: '2rem', height: '2rem', color: '#2563EB' }} />
+              <h1 className="header-title">Roommate Finance Tracker</h1>
+            </div>
+          </div>
+        </header>
+        <main className="content-wrapper">
+          <div style={{ textAlign: 'center', padding: '4rem' }}>
+            <p style={{ fontSize: '1.25rem', color: '#6B7280' }}>Loading...</p>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  // Show login/signup page if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <div className="page-container">
+        <header className="header">
+          <div className="header-wrapper">
+            <div className="header-content">
+              <Receipt style={{ width: '2rem', height: '2rem', color: '#2563EB' }} />
+              <h1 className="header-title">Roommate Finance Tracker</h1>
+            </div>
+          </div>
+        </header>
+        <main className="content-wrapper">
+          <div style={{ textAlign: 'center', padding: '4rem', maxWidth: '600px', margin: '0 auto' }}>
+            <h2 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#111827' }}>
+              Welcome to Roommate Finance Tracker
+            </h2>
+            <p style={{ fontSize: '1.125rem', color: '#6B7280', marginBottom: '2rem' }}>
+              Track shared and personal expenses with your roommates.
+              Visualize spending patterns and manage your financial data easily.
+            </p>
+            {error && (
+              <div style={{
+                backgroundColor: '#FEE2E2',
+                border: '1px solid #EF4444',
+                borderRadius: '0.5rem',
+                padding: '1rem',
+                marginBottom: '1.5rem'
+              }}>
+                <p style={{ color: '#DC2626', margin: 0 }}>Error: {error.message}</p>
+              </div>
+            )}
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+              <SignupButton />
+              <LoginButton />
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  // Main app for authenticated users
   return (
     <div className="page-container">
       {/* Header */}
       <header className="header">
         <div className="header-wrapper">
-          <div className="header-content">
-            <Receipt style={{ width: '2rem', height: '2rem', color: '#2563EB' }} />
-            <h1 className="header-title">Roommate Finance Tracker</h1>
+          <div className="header-content" style={{ justifyContent: 'space-between', width: '100%' }}>
+            <div className="header-content">
+              <Receipt style={{ width: '2rem', height: '2rem', color: '#2563EB' }} />
+              <h1 className="header-title">Roommate Finance Tracker</h1>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <span style={{ color: '#6B7280', fontSize: '0.875rem' }}>
+                {user?.email || user?.name}
+              </span>
+              <LogoutButton />
+            </div>
           </div>
         </div>
       </header>

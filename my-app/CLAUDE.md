@@ -10,11 +10,13 @@ This is a **Roommate Finance Tracker** application built with React + Vite. It h
 
 ### Development
 ```bash
-npm run dev          # Start development server with hot reload (Vite)
+npm run dev          # Start development server with hot reload (Vite) on port 5173
 npm run build        # Build for production
 npm run preview      # Preview production build locally
 npm run lint         # Run ESLint
 ```
+
+**Important:** The application MUST run on port 5173 due to Auth0 callback URL configuration.
 
 ## Architecture
 
@@ -60,6 +62,11 @@ npm run lint         # Run ESLint
 - `ExpenseTable.jsx` - Filterable table displaying expense details
 - `CSVUpload.jsx` - File upload component with CSV parsing logic
 
+**Authentication Components (`src/components/`):**
+- `LoginButton.jsx` - Triggers Auth0 login flow
+- `LogoutButton.jsx` - Triggers Auth0 logout flow
+- `SignupButton.jsx` - Triggers Auth0 signup flow (login with screen_hint=signup)
+
 ### Styling Approach
 
 **CSS Organization:**
@@ -100,11 +107,12 @@ npm run lint         # Run ESLint
 ## Key Dependencies
 
 - **React 19** - UI framework
-- **Vite** - Build tool and dev server
+- **Vite** - Build tool and dev server (configured for port 5173 with strictPort)
 - **Recharts** - Charting library (PieChart, LineChart, BarChart)
 - **lucide-react** - Icon library
 - **Tailwind CSS 4** - Utility-first CSS framework (configured but limited usage)
 - **clsx + tailwind-merge** - Utility for conditional class names
+- **@auth0/auth0-react** - Auth0 SDK for authentication
 
 ## Important Implementation Details
 
@@ -133,5 +141,36 @@ date,description,amount,category,roommate,type
 
 - **No global state library** - Uses React's built-in `useState`
 - All state lives in `App.jsx` and is passed down via props
-- No context providers or Redux
+- No context providers or Redux (except Auth0Provider)
 - State updates are immutable (spreads existing arrays when adding new data)
+
+### Authentication
+
+The app uses **Auth0** for authentication:
+
+**Configuration:**
+- Domain: Set via `VITE_AUTH0_DOMAIN` environment variable (`.env` file)
+- Client ID: Set via `VITE_AUTH0_CLIENT_ID` environment variable (`.env` file)
+- Callback URL: `http://localhost:5173/` (configured in Auth0 dashboard)
+- Logout URL: `http://localhost:5173/` (configured in Auth0 dashboard)
+- Web Origin: `http://localhost:5173/` (configured in Auth0 dashboard)
+
+**Implementation:**
+- Environment variables loaded from `.env` file (not committed to git)
+- Copy `.env.example` to `.env` and fill in your Auth0 credentials
+- `Auth0Provider` wraps the app in `main.jsx` using `import.meta.env.VITE_AUTH0_*` variables
+- `useAuth0` hook provides authentication state (`isLoading`, `isAuthenticated`, `user`, `error`)
+- App renders different views based on auth state:
+  - Loading state while Auth0 initializes
+  - Login/Signup page for unauthenticated users
+  - Main app for authenticated users
+- User info displayed in header with logout button when authenticated
+
+**Important:** The Vite dev server MUST run on port 5173 to match Auth0 callback URLs.
+
+**Environment Variables:**
+Create a `.env` file with:
+```
+VITE_AUTH0_DOMAIN=your-tenant.us.auth0.com
+VITE_AUTH0_CLIENT_ID=your-client-id
+```
