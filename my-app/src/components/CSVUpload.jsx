@@ -38,9 +38,7 @@ export function CSVUpload({ onUpload }) {
   };
 
   return (
-    <div style={{ border: '2px dashed #D1D5DB', borderRadius: '0.5rem', padding: '2rem', textAlign: 'center', transition: 'border-color 0.2s' }}
-         onMouseEnter={(e) => e.currentTarget.style.borderColor = '#3B82F6'}
-         onMouseLeave={(e) => e.currentTarget.style.borderColor = '#D1D5DB'}>
+    <div className="upload-zone">
       <input
         ref={fileInputRef}
         type="file"
@@ -50,11 +48,11 @@ export function CSVUpload({ onUpload }) {
         id="csv-upload"
       />
       <label htmlFor="csv-upload" style={{ cursor: 'pointer' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}>
+        <div className="upload-content">
           <Upload style={{ width: '3rem', height: '3rem', color: '#9CA3AF' }} />
           <div>
-            <p style={{ color: '#2563EB', fontWeight: '500' }}>Click to upload CSV</p>
-            <p style={{ fontSize: '0.875rem', color: '#6B7280', marginTop: '0.25rem' }}>
+            <p className="upload-text-primary">Click to upload CSV</p>
+            <p className="upload-text-secondary">
               Expected format: date, description, amount, category, roommate, type (personal/shared)
             </p>
           </div>
